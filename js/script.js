@@ -14,10 +14,10 @@ const cartFilled = document.querySelector('.cart__contents');
 const cartEmpty = document.querySelector('.cart__empty');
 
 /* CART: total value of items in the cart */
-let cartTotal = document.querySelector('.cart__amount');
+const cartTotal = document.querySelector('.cart__amount');
 
 /* CART: the number of items in the cart */
-let cartItemsNum = document.querySelector('.cart__items-num');
+const cartItemsNum = document.querySelector('.cart__items-num');
 
 /* page cover under confirm */
 const pageCover = document.querySelector('.page-cover');
@@ -59,7 +59,7 @@ const getProductItemTemplate = function( productData ){
             <source media="(max-width: 980px)" srcset="${image.tablet}" />
             <img src="${image.desktop}" alt="${name}" loading="lazy">
           </picture>
-          <button class="product__button ${ isInCart === true ? 'nodisplay' : ''}" data-action="add-to-cart" aria-label="Add to cart" data-product-id="${id}">
+          <button type="button" class="product__button ${ isInCart === true ? 'nodisplay' : ''}" data-action="add-to-cart" aria-label="Add to cart" data-product-id="${id}">
             <svg width="21" height="20" aria-hidden="true">
               <use href="#icon-add-to-cart"></use>
             </svg>
@@ -67,7 +67,7 @@ const getProductItemTemplate = function( productData ){
           </button>
 
           <div class="product__quantity quantity ${ isInCart === true ? '' : 'nodisplay'}" data-action="change-cart">
-            <button class="quantity__btn quantity__btn--decrease" aria-label="Decrease quantity" data-product-id="${id}">
+            <button type="button" class="quantity__btn quantity__btn--decrease" aria-label="Decrease quantity" data-product-id="${id}">
               <svg width="10" height="2" aria-hidden="true">
                 <use href="#icon-decrement"></use>
               </svg>
@@ -75,7 +75,7 @@ const getProductItemTemplate = function( productData ){
 
             <span class="quantity__value" aria-live="polite">${number}</span>
 
-            <button class="quantity__btn quantity__btn--increase" aria-label="Increase quantity" data-product-id="${id}">
+            <button type="button" class="quantity__btn quantity__btn--increase" aria-label="Increase quantity" data-product-id="${id}">
               <svg width="10" height="10" aria-hidden="true">
                 <use href="#icon-increment"></use>
               </svg>
@@ -108,7 +108,7 @@ const getCartItemTemplate = function( cartItemData ){
   <span class="cart__item-unit-price">${formatCurrency(price)}</span>
   <span class="cart__item-sum">${formatCurrency(price * number)}</span>
 </p>
-<button class="cart__item-delete" data-product-id="${id}" aria-label="remove ${name} from cart">
+<button type="button" class="cart__item-delete" data-product-id="${id}" aria-label="remove ${name} from cart">
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
     <path
       d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
@@ -121,9 +121,7 @@ return template;
 
 const getConfirmItemTemplate = function( cartItemData ){
   const {
-    id,
     name,
-    category,
     price,
     image,
     number = 0
@@ -201,7 +199,7 @@ const productHTML = getCartItemTemplate( {...cartItem } );
 
 cartList.insertAdjacentHTML('beforeend', productHTML);
 })
-  cartTotal.textContent = `\$${total}`;
+  cartTotal.textContent = `${formatCurrency(total)}`;
   cartItemsNum.textContent = cartItemsNumber;
 
 };
@@ -477,7 +475,7 @@ async function loadProducts() {
         <p style="font-size: var(--fs-1_4); color: var(--clr-primary-400);">
           ${error.message}
         </p>
-        <button onclick="location.reload()" class="product__button" style="margin-top: 1rem; display: inline-flex;">
+        <button type="button" onclick="location.reload()" class="product__button" style="margin-top: 1rem; display: inline-flex;">
           Try Again
         </button>
       </div>

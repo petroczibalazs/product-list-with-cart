@@ -108,7 +108,7 @@ font-size: var(--fs-4);
 
 .title-l{
   color: var(--clr-accent-one);
-  font-size: var(--fs-2.7);
+  font-size: var(--fs-2_7);
 }
 
 .page{
@@ -205,7 +205,7 @@ font-size: var(--fs-4);
 
 .quantity__btn{
   background-color: transparent;
-  color: #ffffff;
+  color: var(--clr-primary-10);
   outline: none;
   display: grid;
   padding: 0;
@@ -262,7 +262,7 @@ top: 1rem;
 
 .cart__item-name{
   color: var(--clr-primary-900);
-  padding-bottom: 0.6rem;
+  padding-block-end: 0.6rem;
 }
 
 .cart__item-details{
@@ -276,7 +276,7 @@ top: 1rem;
 
 .cart__item-unit-price::before{
 content:'@';
-font-size: 10px;
+font-size: 1rem;
 color: var(--clr-primary-300)
 }
 
@@ -292,7 +292,6 @@ color: var(--clr-primary-300)
 }
 
 .cart__item-delete{
-  border: none;
   padding: 0;
   display: flex;
   align-items: center;
